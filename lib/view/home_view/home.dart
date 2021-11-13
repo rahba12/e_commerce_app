@@ -14,7 +14,7 @@ class Home extends StatelessWidget {
 
   List<Widget> _buildScreens() {
     return [
-      ExploreView(),
+      const ExploreView(),
       const CartView(),
       UserView(),
     ];
