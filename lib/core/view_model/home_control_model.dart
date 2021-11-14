@@ -45,7 +45,7 @@ class HomeController extends GetxController {
       for (int i = 0; i < value.length; i++) {
         _productModel.add(
             ProductModel.fromJson(value[i].data() as Map<dynamic, dynamic>));
-        print(_productModel.length);
+        // print(_productModel.length);
         _loading.value = false;
       }
       update();

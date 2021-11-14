@@ -2,7 +2,7 @@ import 'package:e_commerce_app/shared/extension/extension_color.dart';
 import 'package:flutter/material.dart';
 
 class CartProductModel {
-  late String image, name, price;
+  late String image, name, price, productId;
   late int quantity;
 
   CartProductModel({
@@ -10,16 +10,15 @@ class CartProductModel {
     required this.quantity,
     required this.price,
     required this.image,
+    required this.productId,
   });
 
   CartProductModel.fromJson(Map<dynamic, dynamic> json) {
-    if (json == null) {
-      return;
-    }
     name = json['name'];
     image = json['image'];
     quantity = json['quantity'];
     price = json['price'];
+    productId = json['productId'];
   }
 
   Map<String, dynamic> toJson() {
@@ -28,6 +27,7 @@ class CartProductModel {
       'image': image,
       'quantity': quantity,
       'price': price,
+      'productId': productId,
     };
   }
 }

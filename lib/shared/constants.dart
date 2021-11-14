@@ -7,6 +7,7 @@ final String columnName = 'name';
 final String columnImage = 'image';
 final String columnPrice = 'price';
 final String columnQuantity = 'quantity';
+final String columnProductId = 'productId';
 
 void printFullText(String text) {
   final pattern = RegExp('.{1,800}'); // 800 is the size of each chunk

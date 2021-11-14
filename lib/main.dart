@@ -1,5 +1,6 @@
 import 'package:e_commerce_app/app_theme/themes.dart';
 import 'package:e_commerce_app/binding/binding.dart';
+import 'package:e_commerce_app/core/view_model/cart_controller.dart';
 import 'package:e_commerce_app/translations/codegen_loader.g.dart';
 import 'package:e_commerce_app/view/home_view/home.dart';
 import 'package:e_commerce_app/view/product_details/product_details.dart';
@@ -16,6 +17,7 @@ import 'package:get/get.dart';
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await EasyLocalization.ensureInitialized();
+  Get.put(CartController());
 
   //firebase
   await Firebase.initializeApp();

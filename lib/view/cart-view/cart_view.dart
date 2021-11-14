@@ -98,7 +98,9 @@ class CartView extends StatelessWidget {
                                         splashRadius: 20,
                                         color: Colors.grey,
                                         iconSize: 30,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          controller.increaseQuantity(index);
+                                        },
                                         icon: const Icon(
                                           Icons.add,
                                           color: Colors.white,
@@ -109,9 +111,11 @@ class CartView extends StatelessWidget {
                                     const SizedBox(
                                       width: 15,
                                     ),
-                                    const Text(
-                                      '0',
-                                      style: TextStyle(
+                                    Text(
+                                      controller
+                                          .cartProductModel[index].quantity
+                                          .toString(),
+                                      style: const TextStyle(
                                         color: Color(0xFF000000),
                                         fontWeight: FontWeight.bold,
                                         fontSize: 16,
@@ -132,7 +136,9 @@ class CartView extends StatelessWidget {
                                       ),
                                       child: IconButton(
                                         splashRadius: 4,
-                                        onPressed: () {},
+                                        onPressed: () {
+                                          controller.decreaseQuantity(index);
+                                        },
                                         icon: const Icon(
                                           Icons.remove,
                                           color: Colors.white,
@@ -159,23 +165,26 @@ class CartView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Column(
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'TOTAL',
                       style: TextStyle(
                           fontSize: 13,
                           color: Colors.grey,
                           fontWeight: FontWeight.w400),
                     ),
-                    SizedBox(
+                    const SizedBox(
                       height: 10,
                     ),
-                    Text(
-                      '\$1000',
-                      style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.green,
-                          fontWeight: FontWeight.w600),
+                    GetBuilder<CartController>(
+                      init: Get.put(CartController()),
+                      builder: (controller) => Text(
+                        controller.totalPrice.toString(),
+                        style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.green,
+                            fontWeight: FontWeight.w600),
+                      ),
                     ),
                   ],
                 ),

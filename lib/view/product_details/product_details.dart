@@ -4,6 +4,7 @@ import 'package:e_commerce_app/core/view_model/home_control_model.dart';
 import 'package:e_commerce_app/model/cart_product_model.dart';
 import 'package:e_commerce_app/model/product_model.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:get/get_state_manager/src/simple/get_state.dart';
 
 class ProductDetails extends StatelessWidget {
@@ -13,6 +14,7 @@ class ProductDetails extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GetBuilder<HomeController>(
+      init: HomeController(),
       builder: (controller) => Scaffold(
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.white,
@@ -179,22 +181,23 @@ class ProductDetails extends StatelessWidget {
                   GetBuilder<CartController>(
                     init: CartController(),
                     builder: (controller) => ElevatedButton.icon(
-                        style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all(Colors.green),
-                            textStyle: MaterialStateProperty.all(
-                                const TextStyle(
-                                    fontSize: 16,
-                                    fontWeight: FontWeight.w700))),
-                        onPressed: () {
-                          controller.addProduct(CartProductModel(
-                              name: model.name,
-                              quantity: 1,
-                              price: model.price,
-                              image: model.image));
-                        },
-                        icon: const Icon(Icons.add),
-                        label: const Text('Add')),
+                      style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all(Colors.green),
+                          textStyle: MaterialStateProperty.all(const TextStyle(
+                              fontSize: 16, fontWeight: FontWeight.w700))),
+                      icon: const Icon(Icons.add),
+                      label: const Text('Add'),
+                      onPressed: () => controller.addProduct(
+                        CartProductModel(
+                          name: model.name,
+                          quantity: 1,
+                          price: model.price,
+                          image: model.image,
+                          productId: model.productId,
+                        ),
+                      ),
+                    ),
                   ),
                 ],
               ),
